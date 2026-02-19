@@ -4,3 +4,5 @@ venv/
 
 # Variáveis de ambiente
 .env
+src
+src\downloads
