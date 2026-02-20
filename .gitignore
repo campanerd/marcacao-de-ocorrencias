@@ -6,3 +6,4 @@ venv/
 .env
 src
 src\downloads
+filtros/__pycache__

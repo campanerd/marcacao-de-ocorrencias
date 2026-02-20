@@ -42,14 +42,6 @@ def filtre_base_dia():
     # remover valores vazios
     df_final = df_final.dropna()
 
-    # pasta de destino
-    pasta_destino = os.path.join("src", "downloads")
-    os.makedirs(pasta_destino, exist_ok=True)
-
-    # nome do arquivo de saída
-    arquivo_saida = "contratos_BASE_DIA.xlsx"
-    caminho_saida = os.path.join(pasta_destino, arquivo_saida)
-
     return df_final
 
 
