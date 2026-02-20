@@ -27,9 +27,11 @@ sheets = pd.read_excel(caminho_origem, sheet_name=None)
 
 # extrair a coluna CONTRATO apenas das sheets que possuem essa coluna
 dfs = []
+
 for nome_sheet, df in sheets.items():
-    if "CONTRATO" in df.columns:
-        dfs.append(df[["CONTRATO"]])
+    if nome_sheet.startswith("NU"):
+        if "CONTRATO" in df.columns:
+            dfs.append(df[["CONTRATO"]])
 
 if not dfs:
     raise ValueError("Nenhuma sheet contém a coluna 'CONTRATO'")
