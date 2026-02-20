@@ -32,7 +32,7 @@ pasta_destino = os.path.join("src", "downloads")
 os.makedirs(pasta_destino, exist_ok=True)
 
 # nome do novo arquivo
-arquivo_saida = "contratos.xlsx"
+arquivo_saida = "contratos_BASE_DIA_FOCOS.xlsx"
 caminho_saida = os.path.join(pasta_destino, arquivo_saida)
 
 # salvar novo Excel
