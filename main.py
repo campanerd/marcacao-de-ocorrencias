@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 def main():
-    df_base = filtre_base_dia()
+    df_base, sheets_base = filtre_base_dia()
     df_novos = filtre_novos()
 
     df_final = (
@@ -25,6 +25,11 @@ def main():
 
     print("Automação finalizada com sucesso!")
     print("Total de contratos:", len(df_final))
+
+    print("Sheets lidas - BASE DIA:")
+    for s in sheets_base:
+        print(f" - {s}")
+
 
 if __name__ == "__main__":
     main()
