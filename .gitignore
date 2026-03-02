@@ -7,3 +7,6 @@ venv/
 src
 src\downloads
 filtros/__pycache__
+macro/__pycache__
+excel
+pipelines
