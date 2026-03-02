@@ -4,9 +4,8 @@ venv/
 
 # Variáveis de ambiente
 .env
-src
-src\downloads
-filtros/__pycache__
-macro/__pycache__
-excel
-pipelines
+src/downloads
+src/filtros/__pycache__
+src/macro/__pycache__
+src/exporters/__pycache__
+src/excel/__pycache__
