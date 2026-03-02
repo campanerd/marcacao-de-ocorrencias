@@ -37,4 +37,4 @@ def export_csv_for_creditor(
         encoding="utf-8-sig"
     )
 
-    print(f"✅ CSV gerado para: {creditor}")
+    print(f"CSV gerado para: {creditor}")
