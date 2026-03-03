@@ -73,7 +73,7 @@ INNER JOIN #Contratos T
 
 WHERE A.nome_cred = ?
   AND C.ddd_tel IS NOT NULL
-  AND C.ddd_tel <> ' '
+  AND LTRIM(RTRIM(C.ddd_tel)) <> ''
   AND LEFT(C.Nr_tel,1) = '9'
   AND LEN(C.Nr_tel) = 9
   AND C.STATUS_TEL IN (1,3)
