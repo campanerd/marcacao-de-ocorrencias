@@ -22,8 +22,8 @@ def run_pipeline():
         "Daycoval Daycred"
     ]
 
-    titulo_ocor = "TITULO DA OCORRENCIA"
-    complemento = "COMPLEMENTO"
+    titulo_ocor = "SMS Enviado"
+    complemento = "Ação Massiva"
 
     # lê contratos
     contracts = read_contracts_from_excel(excel_path)
@@ -47,11 +47,11 @@ SELECT DISTINCT
     RTRIM(A.CONTRATO_TIT)                        AS Contrato,
     ?                                            AS [Título da Ocorrência],
     ?                                            AS Complemento,
-    ''                                           AS [Data de Promessa],
+    ' '                                           AS [Data de Promessa],
     FORMAT(GETDATE(),'dd/MM/yyyy HH:mm')         AS [Data/Hora da Ocorrência],
-    ''                                           AS [Código do Usuário],
-    ''                                           AS [Nome do Usuário],
-    ''                                           AS [Número da parcela?]
+    ' '                                           AS [Código do Usuário],
+    ' '                                           AS [Nome do Usuário],
+    ' '                                           AS [Número da parcela?]
 INTO ##Esp
 FROM [192.168.0.143].cobreports.dbo.POSICAO_CARTEIRA A WITH(NOLOCK)
 
@@ -73,7 +73,7 @@ INNER JOIN #Contratos T
 
 WHERE A.nome_cred = ?
   AND C.ddd_tel IS NOT NULL
-  AND C.ddd_tel <> ''
+  AND C.ddd_tel <> ' '
   AND LEFT(C.Nr_tel,1) = '9'
   AND LEN(C.Nr_tel) = 9
   AND C.STATUS_TEL IN (1,3)
@@ -95,7 +95,6 @@ WHERE A.nome_cred = ?
     conn.close()
 
     print("Pipeline finalizado com sucesso!")
-
 
 if __name__ == "__main__":
     run_pipeline()
