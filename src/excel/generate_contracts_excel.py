@@ -1,7 +1,7 @@
 import pandas as pd
 import os
-from filtros.base_dia import filtre_base_dia
-from filtros.novos import filtre_novos
+from src.filtros.base_dia import filtre_base_dia
+from src.filtros.novos import filtre_novos
 
 
 def generate_contracts_excel():
