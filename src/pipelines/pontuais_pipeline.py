@@ -96,5 +96,19 @@ WHERE A.nome_cred = ?
 
     print("Pipeline finalizado com sucesso!")
 
+    downloads = os.path.join("src", "downloads")
+
+    if os.path.exists(downloads):
+        for arquivo in os.listdir(downloads):
+            caminho_arquivo = os.path.join(downloads, arquivo)
+
+            if arquivo == "contratos_COMPLETO.xlsx":
+                try:
+                    os.remove(caminho_arquivo)
+                    print(f"Removido: {arquivo}")
+                except Exception as e:
+                    print(f"Erro ao remover {arquivo}: {e}")
+
+
 if __name__ == "__main__":
     run_pipeline()
