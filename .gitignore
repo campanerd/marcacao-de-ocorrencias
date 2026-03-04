@@ -11,3 +11,5 @@ src/macro/__pycache__
 src/exporters/__pycache__
 src/excel/__pycache__
 src/pipelines/__pycache__
+src/web/__pycache__
+src/ocorrencias/__pycache__

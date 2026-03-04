@@ -39,7 +39,7 @@ def export_csv_for_creditor(
 
     if df.empty:
         print(f"Nenhum registro para o credor: {creditor}")
-        return
+        return None
 
     nome_csv = (
         f"{base_filename}_"
@@ -47,7 +47,7 @@ def export_csv_for_creditor(
         f"{datetime.now().strftime('%d.%m.%Y')}.csv"
     )
 
-    caminho_saida = os.path.join(output_dir, nome_csv)
+    caminho_saida = os.path.abspath(os.path.join(output_dir, nome_csv))
 
     df.to_csv(
         caminho_saida,
@@ -57,3 +57,4 @@ def export_csv_for_creditor(
     )
 
     print(f"CSV gerado: {caminho_saida}")
+    return caminho_saida

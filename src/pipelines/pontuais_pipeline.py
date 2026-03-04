@@ -7,14 +7,12 @@ import os
 
 
 def run_pipeline():
-    # gera o excel automaticamente
     excel_path = generate_contracts_excel()
 
     base_filename = os.path.splitext(
         os.path.basename(excel_path)
     )[0]
 
-    # credores
     credores = [
         "Daycoval Veiculos",
         "Daycoval Juridico",
@@ -22,21 +20,17 @@ def run_pipeline():
         "Daycoval Daycred"
     ]
 
-    titulo_ocor = "SMS Enviado"
+    titulo_ocor = "Whatsapp Enviado"
     complemento = "Ação Massiva"
 
-    # lê contratos
     contracts = read_contracts_from_excel(excel_path)
 
-    # conecta no banco
     conn = get_sql_connection()
     cursor = conn.cursor()
 
-    #tabela temporária
     create_temp_contract_table(cursor, contracts)
     conn.commit()
 
-    # sql
     sql = """
 IF OBJECT_ID('tempdb..##Esp') IS NOT NULL DROP TABLE ##Esp;
 
@@ -79,9 +73,10 @@ WHERE A.nome_cred = ?
   AND C.STATUS_TEL IN (1,3)
 """
 
-    #gera CSV por credor
+    arquivos_gerados = []
+
     for creditor in credores:
-        export_csv_for_creditor(
+        caminho_arquivo = export_csv_for_creditor(
             conn,
             cursor,
             sql,
@@ -90,11 +85,14 @@ WHERE A.nome_cred = ?
             complemento,
             base_filename
         )
+        if caminho_arquivo:
+            arquivos_gerados.append({
+                "credor": creditor,
+                "path": caminho_arquivo
+            })
 
     cursor.close()
     conn.close()
-
-    print("Pipeline finalizado com sucesso!")
 
     downloads = os.path.join("src", "downloads")
 
@@ -105,9 +103,12 @@ WHERE A.nome_cred = ?
             if arquivo == "contratos_COMPLETO.xlsx":
                 try:
                     os.remove(caminho_arquivo)
-                    print(f"Removido: {arquivo}")
-                except Exception as e:
-                    print(f"Erro ao remover {arquivo}: {e}")
+                except Exception:
+                    pass
+
+    print("Pipeline finalizado com sucesso!")
+
+    return arquivos_gerados
 
 
 if __name__ == "__main__":
