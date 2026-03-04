@@ -1,9 +1,6 @@
 import os
 import sys 
 from dotenv import load_dotenv
-import csv
-import io
-import tempfile
 
 from fastapi import HTTPException
 
@@ -18,7 +15,6 @@ from selenium.webdriver.support.ui import Select
 from time import sleep
 from datetime import datetime
 import pandas as pd
-from typing import Any,Optional, Tuple
 
 
 if getattr(sys, 'frozen', False):
