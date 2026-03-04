@@ -2,16 +2,19 @@ import pandas as pd
 import os
 from src.filtros.base_dia import filtre_base_dia
 from src.filtros.novos import filtre_novos
+from src.filtros.base_dia_focos import filtre_base_dia_focos
 
 
 def generate_contracts_excel():
     df_base, sheets_base = filtre_base_dia()
     df_novos = filtre_novos()
+    df_focos, sheets_base_focos = filtre_base_dia_focos()
 
     print("Sheets processadas:", sheets_base)
+    print("Sheets processadas (Focos):", sheets_base_focos)
 
     df_final = (
-        pd.concat([df_base, df_novos], ignore_index=True)
+        pd.concat([df_base, df_novos, df_focos], ignore_index=True)
         .dropna()
         .drop_duplicates()
     )
