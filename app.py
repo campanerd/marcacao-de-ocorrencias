@@ -1,7 +1,10 @@
-import tkinter as tk
+import customtkinter as ctk
 from tkinter import messagebox
 import threading
 from src.font.runner import main
+
+ctk.set_appearance_mode("light")
+ctk.set_default_color_theme("blue")
 
 nomes_modo = {
     "Focos": "Base Focos",
@@ -18,10 +21,10 @@ def selecionar_opcao(modo):
 
     limpar_frame_inferior()
 
-    botao = tk.Button(frame_inferior, text="Executar", command=iniciar)
+    botao = ctk.CTkButton(frame_inferior, text="Executar", command=iniciar)
     botao.pack(pady=10)
 
-    status.config(text=f"Modo selecionado: {nomes_modo[modo]}")
+    status.configure(text=f"Modo selecionado: {nomes_modo[modo]}")
 
 def limpar_frame_inferior():
     for widget in frame_inferior.winfo_children():
@@ -33,8 +36,8 @@ def iniciar():
         messagebox.showwarning("Aviso", "Selecione uma opção")
         return
 
-    status.config(text="Processando...")
-    botao.config(state="disabled")
+    status.configure(text="Processando...")
+    botao.configure(state="disabled")
 
     if modo_execucao == "Focos":
         thread = threading.Thread(
@@ -58,8 +61,8 @@ def iniciar():
 
 def finalizar_execucao():
     def atualizar():
-        status.config(text="Processo finalizado com sucesso!")
-        botao.config(state="normal")
+        status.configure(text="Processo finalizado com sucesso!")
+        botao.configure(state="normal")
     root.after(0, atualizar)
 
 def focos():
@@ -79,36 +82,36 @@ def novos():
     finalizar_execucao()
 
 #janela
-root = tk.Tk()
+root = ctk.CTk()
 root.title("Marcação de Ocorrências")
 root.geometry("450x280")
 
 #frame superior
 
-frame_button = tk.Frame(root)
+frame_button = ctk.CTkFrame(root)
 frame_button.pack(pady=10)
 
-botao1 = tk.Button(frame_button, text="1 - BASE FOCOS", width=15, command=lambda: selecionar_opcao("Focos"))
+botao1 = ctk.CTkButton(frame_button, text="1 - BASE FOCOS", width=15, command=lambda: selecionar_opcao("Focos"))
 botao1.pack(side="left", padx=5)
 
-botao2 = tk.Button(frame_button, text="2 - BASE DIA", width=15, command=lambda: selecionar_opcao("Base Novos"))
+botao2 = ctk.CTkButton(frame_button, text="2 - BASE DIA", width=15, command=lambda: selecionar_opcao("Base Novos"))
 botao2.pack(side="left", padx=5)
 
-botao3 = tk.Button(frame_button, text="3 - BASE NOVOS", width=15, command=lambda: selecionar_opcao("Novos"))
+botao3 = ctk.CTkButton(frame_button, text="3 - BASE NOVOS", width=15, command=lambda: selecionar_opcao("Novos"))
 botao3.pack(side="left", padx=5)
 
 #frame inferior
 
-frame_inferior = tk.Frame(root)
+frame_inferior = ctk.CTkFrame(root)
 frame_inferior.pack(expand=True)
 
-tk.Label(
+ctk.CTkLabel(
     frame_inferior,
     text="Selecione uma opção acima",
-    fg="gray"
+    text_color="gray"
 ).pack(pady=5)
 
-status = tk.Label(
+status = ctk.CTkLabel(
     root,
     text="",
     wraplength=420,
@@ -116,7 +119,7 @@ status = tk.Label(
 )
 status.pack(pady=5)
 
-tk.Label(
+ctk.CTkLabel(
     root,
     text="Desenvolvido por Davi Campaner"
 ).pack(side="bottom", pady=5)
