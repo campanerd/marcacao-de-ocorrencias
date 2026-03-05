@@ -126,8 +126,8 @@ class ServiceRoutineClimbLowOccurence:
 
             sleep(3)
             # # Descomentar para importar
-            # import_carga = self._wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="btn-importar"]')))
-            # import_carga = self._driver.find_element(By.XPATH,'//*[@id="btn-importar"]')
-            # import_carga = import_carga.click()
+            import_carga = self._wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="btn-importar"]')))
+            import_carga = self._driver.find_element(By.XPATH,'//*[@id="btn-importar"]')
+            import_carga = import_carga.click()
 
             sleep(60)

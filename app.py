@@ -4,9 +4,9 @@ import threading
 from src.font.runner import main
 
 nomes_modo = {
-    "Focos": "Focos",
-    "Base Novos": "Base Novos",
-    "Novos": "Novos"
+    "Focos": "Base Focos",
+    "Base Novos": "Base Dia",
+    "Novos": "Base Novos"
 }
 
 modo_execucao = None
@@ -91,10 +91,10 @@ frame_button.pack(pady=10)
 botao1 = tk.Button(frame_button, text="1 - BASE FOCOS", width=15, command=lambda: selecionar_opcao("Focos"))
 botao1.pack(side="left", padx=5)
 
-botao2 = tk.Button(frame_button, text="2 - BASE NOVOS", width=15, command=lambda: selecionar_opcao("Base Novos"))
+botao2 = tk.Button(frame_button, text="2 - BASE DIA", width=15, command=lambda: selecionar_opcao("Base Novos"))
 botao2.pack(side="left", padx=5)
 
-botao3 = tk.Button(frame_button, text="3 - NOVOS", width=15, command=lambda: selecionar_opcao("Novos"))
+botao3 = tk.Button(frame_button, text="3 - BASE NOVOS", width=15, command=lambda: selecionar_opcao("Novos"))
 botao3.pack(side="left", padx=5)
 
 #frame inferior
