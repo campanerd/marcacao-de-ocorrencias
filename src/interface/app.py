@@ -8,6 +8,9 @@ nomes_modo = {
     "Novos": "Novos"
 }
 
+modo_execucao = None
+botao = None
+
 def focos():
     print("Focos")
 
@@ -17,7 +20,7 @@ def selecionar_opcao(modo):
 
     limpar_frame_inferior()
 
-    botao = tk.Button(frame_inferior, text="Executar", command=execute)
+    botao = tk.Button(frame_inferior, text="Executar", command=iniciar)
     botao.pack(pady=10)
 
     status.config(text=f"Modo selecionado: {nomes_modo[modo]}")
@@ -41,13 +44,13 @@ def iniciar():
             daemon=True
         )
     
-    if modo_execucao == "Base Novos":
+    elif modo_execucao == "Base Novos":
         thread = threading.Thread(
             target=base_novos,
             daemon=True
         )
     
-    else:
+    elif modo_execucao == "Novos":
         thread = threading.Thread(
             target=novos,
             daemon=True
@@ -93,14 +96,6 @@ tk.Label(
     text="Selecione uma opção acima",
     fg="gray"
 ).pack(pady=5)
-
-status = tk.Label(
-    root,
-    text="",
-    wraplength=420,
-    justify="left"
-)
-status.pack(pady=5)
 
 status = tk.Label(
     root,
