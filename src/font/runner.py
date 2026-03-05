@@ -2,10 +2,10 @@ from src.pipelines.pontuais_pipeline import run_pipeline
 from src.web.ServiceRoutineClimbLowOccurence import ServiceRoutineClimbLowOccurence
 
 
-def main():
+def main(modo: str):
 
-    print("Iniciando pipeline...")
-    generated_files = run_pipeline()
+    print(f"Iniciando pipeline selecionada: {modo}")
+    generated_files = run_pipeline(modo)
 
     print("Arquivos gerados:")
     for item in generated_files:
@@ -29,4 +29,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main("Focos")

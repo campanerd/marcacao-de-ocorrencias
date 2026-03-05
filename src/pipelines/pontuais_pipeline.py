@@ -6,8 +6,8 @@ from src.exporters.csv_exporter import export_csv_for_creditor
 import os
 
 
-def run_pipeline():
-    excel_path = generate_contracts_excel()
+def run_pipeline(modo: str):
+    excel_path = generate_contracts_excel(modo)
 
     base_filename = os.path.splitext(
         os.path.basename(excel_path)

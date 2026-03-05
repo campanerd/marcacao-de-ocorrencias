@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import threading
+from src.font.runner import main
 
 nomes_modo = {
     "Focos": "Focos",
@@ -10,9 +11,6 @@ nomes_modo = {
 
 modo_execucao = None
 botao = None
-
-def focos():
-    print("Focos")
 
 def selecionar_opcao(modo):
     global modo_execucao, botao
@@ -58,14 +56,27 @@ def iniciar():
 
     thread.start()
 
+def finalizar_execucao():
+    def atualizar():
+        status.config(text="Processo finalizado com sucesso!")
+        botao.config(state="normal")
+    root.after(0, atualizar)
+
+def focos():
+    main("Focos")
+    finalizar_execucao()
+
 def execute():
     print("teste")
+    finalizar_execucao()
 
 def base_novos():
-    print("Base Novos")
+    main("Base Novos")
+    finalizar_execucao()
 
 def novos():
-    print("Novos")
+    main("Novos")
+    finalizar_execucao()
 
 #janela
 root = tk.Tk()
