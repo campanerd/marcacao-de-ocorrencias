@@ -26,7 +26,3 @@ def main(modo: str):
         bot.import_carga_vcom(credor, file_path)
 
     print("Processo finalizado com sucesso!")
-
-
-if __name__ == "__main__":
-    main("Focos")
