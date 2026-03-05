@@ -21,7 +21,7 @@ def selecionar_opcao(modo):
 
     limpar_frame_inferior()
 
-    botao = ctk.CTkButton(frame_inferior, text="Executar", command=iniciar)
+    botao = ctk.CTkButton(frame_inferior, text="Executar Automação", width=200, height=45, corner_radius=12, font=("Arial", 15, "bold"), command=iniciar)
     botao.pack(pady=10)
 
     status.configure(text=f"Modo selecionado: {nomes_modo[modo]}")
@@ -84,44 +84,49 @@ def novos():
 #janela
 root = ctk.CTk()
 root.title("Marcação de Ocorrências")
-root.geometry("450x280")
+root.geometry("520x260")
 
 #frame superior
 
-frame_button = ctk.CTkFrame(root)
+frame_button = ctk.CTkFrame(root, fg_color="transparent")
 frame_button.pack(pady=10)
 
-botao1 = ctk.CTkButton(frame_button, text="1 - BASE FOCOS", width=15, command=lambda: selecionar_opcao("Focos"))
+botao1 = ctk.CTkButton(frame_button, text="1 - BASE FOCOS", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Focos"))
 botao1.pack(side="left", padx=5)
 
-botao2 = ctk.CTkButton(frame_button, text="2 - BASE DIA", width=15, command=lambda: selecionar_opcao("Base Novos"))
+botao2 = ctk.CTkButton(frame_button, text="2 - BASE DIA", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Base Novos"))
 botao2.pack(side="left", padx=5)
 
-botao3 = ctk.CTkButton(frame_button, text="3 - BASE NOVOS", width=15, command=lambda: selecionar_opcao("Novos"))
+botao3 = ctk.CTkButton(frame_button, text="3 - BASE NOVOS", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Novos"))
 botao3.pack(side="left", padx=5)
 
 #frame inferior
 
-frame_inferior = ctk.CTkFrame(root)
+frame_inferior = ctk.CTkFrame(root, fg_color="transparent")
 frame_inferior.pack(expand=True)
 
 ctk.CTkLabel(
     frame_inferior,
     text="Selecione uma opção acima",
+    font=("Arial", 14),
     text_color="gray"
 ).pack(pady=5)
 
 status = ctk.CTkLabel(
-    root,
+    root, 
+    fg_color="transparent",
     text="",
-    wraplength=420,
-    justify="left"
+    font=("Arial", 13),
+    wraplength=480,
+    justify="center"
 )
 status.pack(pady=5)
 
 ctk.CTkLabel(
     root,
-    text="Desenvolvido por Davi Campaner"
-).pack(side="bottom", pady=5)
+    fg_color="transparent",
+    text="Desenvolvido por Davi Campaner",
+    font=("Arial", 13, "bold"),
+).pack(side="bottom", pady=8)
 
 root.mainloop()
