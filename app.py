@@ -3,7 +3,7 @@ from tkinter import messagebox
 import threading
 from src.font.runner import main
 
-ctk.set_appearance_mode("light")
+ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 nomes_modo = {
@@ -116,7 +116,7 @@ status = ctk.CTkLabel(
     root, 
     fg_color="transparent",
     text="",
-    font=("Arial", 13),
+    font=("Arial", 15, "bold"),
     wraplength=480,
     justify="center"
 )
@@ -125,8 +125,10 @@ status.pack(pady=5)
 ctk.CTkLabel(
     root,
     fg_color="transparent",
-    text="Desenvolvido por Davi Campaner",
-    font=("Arial", 13, "bold"),
+    text="Desenvolvido por Davi Campaner - 2026",
+    font=("Arial", 13, "bold", "italic"),
+    text_color="gray",
+    justify="center"
 ).pack(side="bottom", pady=8)
 
 root.mainloop()
