@@ -86,12 +86,19 @@ def novos():
 def alternar_tema():
     global modo_tema
 
+    root.configure(cursor="watch")
+    root.update()
+
     if modo_tema == "dark":
         ctk.set_appearance_mode("light")
         modo_tema = "light"
+        botao_tema.configure(text="🌙")
     else:
         ctk.set_appearance_mode("dark")
         modo_tema = "dark"
+        botao_tema.configure(text="☀")
+
+    root.configure(cursor="")
 
 #janela
 root = ctk.CTk()
@@ -145,12 +152,13 @@ ctk.CTkLabel(
 
 botao_tema = ctk.CTkButton(
     root,
-    text="🌙 / ☀",
+    text="☀",
     width=40,
     height=30,
+    corner_radius=50,
     command=alternar_tema
 )
 
-botao_tema.place(x=430, y=200)
+botao_tema.place(relx=0.90, rely=0.90, anchor="center")
 
 root.mainloop()
