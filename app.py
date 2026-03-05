@@ -6,6 +6,8 @@ from src.font.runner import main
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
+modo_tema = "dark"
+
 nomes_modo = {
     "Focos": "Base Focos",
     "Base Novos": "Base Dia",
@@ -81,6 +83,16 @@ def novos():
     main("Novos")
     finalizar_execucao()
 
+def alternar_tema():
+    global modo_tema
+
+    if modo_tema == "dark":
+        ctk.set_appearance_mode("light")
+        modo_tema = "light"
+    else:
+        ctk.set_appearance_mode("dark")
+        modo_tema = "dark"
+
 #janela
 root = ctk.CTk()
 root.title("Marcação de Ocorrências")
@@ -130,5 +142,15 @@ ctk.CTkLabel(
     text_color="gray",
     justify="center"
 ).pack(side="bottom", pady=8)
+
+botao_tema = ctk.CTkButton(
+    root,
+    text="🌙 / ☀",
+    width=40,
+    height=30,
+    command=alternar_tema
+)
+
+botao_tema.place(x=430, y=200)
 
 root.mainloop()
