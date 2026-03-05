@@ -1,8 +1,22 @@
 from src.pipelines.pontuais_pipeline import run_pipeline
 from src.web.ServiceRoutineClimbLowOccurence import ServiceRoutineClimbLowOccurence
-
+import os
 
 def main(modo: str):
+
+    def limpar_downloads():
+        pasta = os.path.join("src", "downloads")
+
+        if not os.path.exists(pasta):
+            return
+
+        for arquivo in os.listdir(pasta):
+            caminho = os.path.join(pasta, arquivo)
+
+            if os.path.isfile(caminho):
+                os.remove(caminho)
+
+        print("Pasta downloads limpa.")
 
     print(f"Iniciando pipeline selecionada: {modo}")
     generated_files = run_pipeline(modo)
@@ -26,3 +40,4 @@ def main(modo: str):
         bot.import_carga_vcom(credor, file_path)
 
     print("Processo finalizado com sucesso!")
+    limpar_downloads()
