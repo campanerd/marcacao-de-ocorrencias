@@ -35,8 +35,8 @@ class RedirectOutput:
         if text.strip(): 
             log(text.strip()) 
 
-        def flush(self): 
-            pass
+    def flush(self): 
+        pass
 
 def limpar_frame_inferior():
     for widget in frame_inferior.winfo_children():
