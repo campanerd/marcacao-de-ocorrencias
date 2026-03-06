@@ -7,6 +7,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 modo_tema = "dark"
+spinner_running = False
 
 nomes_modo = {
     "Focos": "Base Focos",
@@ -33,6 +34,14 @@ def limpar_frame_inferior():
         widget.destroy()
 
 def iniciar():
+
+    global spinner_running
+    spinner_running = True
+    animar_spinner()
+
+    progress.start()
+
+    log("Iniciando automação...")
 
     if not modo_execucao:
         messagebox.showwarning("Aviso", "Selecione uma opção")
@@ -63,9 +72,34 @@ def iniciar():
 
 def finalizar_execucao():
     def atualizar():
+        global spinner_running
+        spinner_running = False
+
+        progress.stop()
+        loading.configure(text="")
+
+        log("Processo finalizado com sucesso!")
+
         status.configure(text="Processo finalizado com sucesso!")
         botao.configure(state="normal")
     root.after(0, atualizar)
+
+def log(msg):
+    log_box.insert("end", msg + "\n")
+    log_box.see("end")
+
+def animar_spinner():
+    frames = ["⏳", "⌛"]
+    i = 0
+
+    def loop():
+        nonlocal i
+        if spinner_running:
+            loading.configure(text=frames[i % 2])
+            i += 1
+            root.after(500, loop)
+
+    loop()
 
 def focos():
     main("Focos")
@@ -160,5 +194,15 @@ botao_tema = ctk.CTkButton(
 )
 
 botao_tema.place(relx=0.90, rely=0.90, anchor="center")
+
+progress = ctk.CTkProgressBar(root, width=300)
+progress.set(0)
+progress.pack(pady=5)
+
+log_box = ctk.CTkTextbox(root, width=480, height=80)
+log_box.pack(pady=5)
+
+loading = ctk.CTkLabel(root, text="", font=("Arial", 18))
+loading.pack()
 
 root.mainloop()
