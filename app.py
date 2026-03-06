@@ -2,6 +2,7 @@ import customtkinter as ctk
 from tkinter import messagebox
 import threading
 from src.font.runner import main
+import sys
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -28,6 +29,14 @@ def selecionar_opcao(modo):
     botao.pack(pady=10)
 
     status.configure(text=f"Modo selecionado: {nomes_modo[modo]}")
+
+class RedirectOutput:
+    def write(self, text): 
+        if text.strip(): 
+            log(text.strip()) 
+
+        def flush(self): 
+            pass
 
 def limpar_frame_inferior():
     for widget in frame_inferior.winfo_children():
@@ -137,7 +146,7 @@ def alternar_tema():
 #janela
 root = ctk.CTk()
 root.title("Marcação de Ocorrências")
-root.geometry("520x260")
+root.geometry("520x360")
 
 #frame superior
 
@@ -205,4 +214,5 @@ log_box.pack(pady=5)
 loading = ctk.CTkLabel(root, text="", font=("Arial", 18))
 loading.pack()
 
+sys.stdout = RedirectOutput()
 root.mainloop()
