@@ -12,7 +12,7 @@ def generate_contracts_excel(modo: str):
         df_final = df_focos
         print("Sheets processadas (Focos):", sheets_base_focos)
 
-    elif modo == "Base Novos":
+    elif modo == "Dia":
         df_base, sheets_base = filtre_base_dia()
         df_final = df_base
         print("Sheets processadas:", sheets_base)

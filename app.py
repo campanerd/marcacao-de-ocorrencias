@@ -12,7 +12,7 @@ spinner_running = False
 
 nomes_modo = {
     "Focos": "Base Focos",
-    "Base Novos": "Base Dia",
+    "Dia": "Base Dia",
     "Novos": "Base Novos"
 }
 
@@ -65,9 +65,9 @@ def iniciar():
             daemon=True
         )
     
-    elif modo_execucao == "Base Novos":
+    elif modo_execucao == "Dia":
         thread = threading.Thread(
-            target=base_novos,
+            target=base_dias,
             daemon=True
         )
     
@@ -118,8 +118,8 @@ def execute():
     print("teste")
     finalizar_execucao()
 
-def base_novos():
-    main("Base Novos")
+def base_dias():
+    main("Dia")
     finalizar_execucao()
 
 def novos():
@@ -156,7 +156,7 @@ frame_button.pack(pady=10)
 botao1 = ctk.CTkButton(frame_button, text="1 - BASE FOCOS", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Focos"))
 botao1.pack(side="left", padx=5)
 
-botao2 = ctk.CTkButton(frame_button, text="2 - BASE DIA", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Base Novos"))
+botao2 = ctk.CTkButton(frame_button, text="2 - BASE DIA", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Dia"))
 botao2.pack(side="left", padx=5)
 
 botao3 = ctk.CTkButton(frame_button, text="3 - BASE NOVOS", width=140, height=40, corner_radius=10, font=("Arial", 14, "bold"), command=lambda: selecionar_opcao("Novos"))
