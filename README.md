@@ -1,7 +1,7 @@
 # 🚀 Automação de Marcação de Ocorrências – VCOM
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Automation](https://img.shields.io/badge/Automation-Web-orange)
+![Selenium](https://img.shields.io/badge/Selenium-Web-orange)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-green)
 ![SQL](https://img.shields.io/badge/SQL-Integration-red)
 ![UI](https://img.shields.io/badge/UI-CustomTkinter-purple)
@@ -78,4 +78,5 @@ A interface permite executar a automação de forma simples e acompanhar todo o 
 - **CustomTkinter**
 - **Automação Web**
 - **Threading**
+- **Selenium**
 
