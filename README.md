@@ -1,6 +1,6 @@
 # 🚀 Automação de Marcação de Ocorrências – VCOM
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Python](https://img.shields.io/badge/Python-3.14-blue)
 ![Selenium](https://img.shields.io/badge/Selenium-Web-orange)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-green)
 ![SQL](https://img.shields.io/badge/SQL-Integration-red)
