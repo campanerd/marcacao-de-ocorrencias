@@ -1,64 +1,81 @@
-# Automação de Marcação de Ocorrências – VCOM
+# 🚀 Automação de Marcação de Ocorrências – VCOM
 
-Este projeto automatiza o processo de **geração, filtragem e importação de ocorrências no sistema VCOM**, reduzindo tarefas manuais e garantindo maior agilidade no processamento de contratos.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Automation](https://img.shields.io/badge/Automation-Web-orange)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-green)
+![SQL](https://img.shields.io/badge/SQL-Integration-red)
+![UI](https://img.shields.io/badge/UI-CustomTkinter-purple)
 
-A automação combina **tratamento de dados em Excel**, **integração com banco SQL para execução de macros**, e **automação web para interação direta com o sistema VCOM**, permitindo que todo o fluxo seja executado automaticamente através de uma interface gráfica.
+Este projeto automatiza o processo de **geração, filtragem e importação de ocorrências no sistema VCOM**, reduzindo tarefas manuais e aumentando a confiabilidade do processo operacional.
 
-## 🎯 Objetivo
+A automação combina:
 
-Automatizar etapas operacionais que antes eram feitas manualmente, como:
+- processamento de dados em **Excel**
+- **integração com SQL** para suporte a macros
+- **automação web** para interação com o sistema VCOM
+- **interface gráfica moderna** para execução e monitoramento
 
-- leitura e tratamento de bases em Excel
-- aplicação de filtros e regras de negócio
-- geração de arquivos de carga
-- execução de **macros via integração SQL**
-- importação automática no sistema **VCOM**
+# 🎯 Objetivo
+
+Automatizar etapas que antes exigiam manipulação manual de planilhas e interação direta com o sistema, como:
+
+- leitura e tratamento de bases Excel
+- aplicação de regras de negócio
+- geração automática de arquivos de carga
+- execução de macros auxiliadas por **SQL**
+- importação automática no **VCOM**
 - acompanhamento da execução em tempo real
 
+# 🌐 Automação Web
 
-## 🌐 Automação Web
+O projeto inclui uma rotina de **automação web responsável por interagir diretamente com o sistema VCOM**, realizando automaticamente:
 
-O projeto inclui uma rotina de **automação web responsável pela interação com o sistema VCOM**, realizando automaticamente:
+- login no sistema  
+- navegação entre páginas  
+- upload/importação de arquivos  
+- execução das rotinas necessárias  
 
-- login no sistema
-- navegação entre páginas
-- importação de arquivos gerados
-- execução das rotinas operacionais necessárias
+Isso elimina a necessidade de executar manualmente essas tarefas no sistema.
 
-Essa etapa elimina a necessidade de realizar essas ações manualmente no sistema.
+# 🧠 Integração com SQL
 
-## 🧠 Integração com SQL
+A automação também possui **integração com banco de dados SQL**, utilizada para:
 
-Além do processamento de dados, o sistema também possui **integração com SQL**, utilizada para:
+- execução de consultas auxiliares
+- suporte a **macros utilizadas no Excel**
+- complementação do processamento das bases
 
-- executar consultas auxiliares
-- suportar rotinas utilizadas por **macros do Excel**
-- complementar o processamento das bases utilizadas na automação
+Essa integração garante maior flexibilidade no tratamento dos dados.
+
+# 🖥️ Interface Gráfica
+
+O projeto possui uma interface moderna desenvolvida com **CustomTkinter**, localizada no arquivo: app.py
 
 
-## 🖥️ Interface Gráfica (`app.py`)
+A interface permite executar a automação de forma simples e acompanhar todo o processo.
 
-O projeto possui uma interface moderna desenvolvida com **CustomTkinter**, permitindo executar a automação de forma simples e visual.
+### Recursos da interface
 
-A interface oferece:
+- seleção do tipo de base a processar
+- **logs em tempo real**
+- barra de progresso
+- indicador visual de processamento
+- **botão para alternar entre modo claro e modo noturno**
+- execução em **thread** para não travar a interface
 
-- seleção do tipo de base a ser processada
-- **logs em tempo real** exibindo cada etapa da execução
-- **barra de progresso**
-- **indicador visual de processamento**
-- **botão de alternância entre modo claro e modo noturno**
-- execução da automação sem travar a interface (uso de threads)
 
-Isso permite acompanhar o processamento **ao vivo**, facilitando monitoramento e diagnóstico.
+# 🖼️ Interface da Automação (Modo Noturno)
 
-## 🧰 Tecnologias Utilizadas
+![Interface](docs/interface.png)
+
+
+# 🧰 Tecnologias Utilizadas
 
 - **Python 3**
-- **Pandas** – tratamento e manipulação de dados
-- **SQL** – suporte a consultas e execução de macros
-- **Excel** – entrada e saída de dados
-- **CustomTkinter** – interface gráfica
-- **Automação Web** – integração com o sistema VCOM
-- **Threading** – execução sem travar a interface
+- **Pandas**
+- **SQL**
+- **Excel**
+- **CustomTkinter**
+- **Automação Web**
+- **Threading**
 
----
