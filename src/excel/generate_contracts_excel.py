@@ -3,6 +3,7 @@ import os
 from src.filtros.base_dia import filtre_base_dia
 from src.filtros.novos import filtre_novos
 from src.filtros.base_dia_focos import filtre_base_dia_focos
+from datetime import datetime
 
 
 def generate_contracts_excel(modo: str):
@@ -27,9 +28,13 @@ def generate_contracts_excel(modo: str):
     pasta_destino = os.path.join("src", "downloads")
     os.makedirs(pasta_destino, exist_ok=True)
 
+    agora = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    nome_arquivo = f"contratos_{modo}_{agora}.xlsx"
+
     caminho_saida = os.path.join(
         pasta_destino,
-        "contratos_COMPLETO.xlsx"
+        nome_arquivo
     )
 
     df_final.to_excel(caminho_saida, index=False)

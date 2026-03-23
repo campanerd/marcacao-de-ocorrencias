@@ -21,7 +21,7 @@ def run_pipeline(modo: str):
     ]
 
     titulo_ocor = "Whatsapp Enviado"
-    complemento = "Ação Massiva"
+    complemento = "Ação Massiva - via Whatsapp"
 
     contracts = read_contracts_from_excel(excel_path)
 
