@@ -18,17 +18,119 @@ nomes_modo = {
 
 modo_execucao = None
 botao = None
+sheets_selecionadas = []
+
+SHEETS_FOCOS = [
+    "NU-DAYFOCOS",
+    "NU-CPC",
+    "NU-B123",
+    "NU-ACIMA50K",
+    "NU-RESTANTES2",
+    "NU-RESTANTES3",
+    "NU-FOCOSDAY",
+    "NU-FOCOSOPES",
+    "NU-PESADOS",
+    "NU-DAYCRED",
+    "NU-5A20K",
+    "NU-20A50K"
+]
 
 def selecionar_opcao(modo):
-    global modo_execucao, botao
+    global modo_execucao, botao, sheets_selecionadas
     modo_execucao = modo
+    sheets_selecionadas = []
 
     limpar_frame_inferior()
 
-    botao = ctk.CTkButton(frame_inferior, text="Executar Automação", width=200, height=45, corner_radius=12, font=("Arial", 15, "bold"), command=iniciar)
-    botao.pack(pady=10)
+    if modo == "Focos":
+        criar_interface_selecao_sheets()
+        root.geometry("520x780")
+    else:
+        botao = ctk.CTkButton(frame_inferior, text="Executar Automação", width=200, height=45, corner_radius=12, font=("Arial", 15, "bold"), command=iniciar)
+        botao.pack(pady=10)
 
     status.configure(text=f"Modo selecionado: {nomes_modo[modo]}")
+
+def criar_interface_selecao_sheets():
+    global botao, sheets_selecionadas
+    
+    # Frame para scroll das sheets
+    frame_sheets = ctk.CTkScrollableFrame(frame_inferior, width=400, height=200)
+    frame_sheets.pack(pady=10, padx=10)
+    
+    # Variáveis de controle para os checkboxes
+    checkbox_vars = {}
+    
+    def atualizar_selecoes():
+        global sheets_selecionadas
+        sheets_selecionadas = []
+        for sheet_name, var in checkbox_vars.items():
+            if var.get():
+                sheets_selecionadas.append(sheet_name)
+    
+    def selecionar_todos():
+        for var in checkbox_vars.values():
+            var.set(True)
+        atualizar_selecoes()
+    
+    def desselecionar_todos():
+        for var in checkbox_vars.values():
+            var.set(False)
+        atualizar_selecoes()
+    
+    # Botão "Selecionar Todos"
+    btn_selecionar_todos = ctk.CTkButton(
+        frame_sheets,
+        text="✓ Selecionar Todos",
+        width=350,
+        height=30,
+        corner_radius=8,
+        font=("Arial", 12, "bold"),
+        command=selecionar_todos
+    )
+    btn_selecionar_todos.pack(pady=5, padx=5)
+    
+    # Botão "Desselecionar Todos"
+    btn_desselecionar = ctk.CTkButton(
+        frame_sheets,
+        text="✗ Desselecionar Todos",
+        width=350,
+        height=30,
+        corner_radius=8,
+        font=("Arial", 12, "bold"),
+        command=desselecionar_todos
+    )
+    btn_desselecionar.pack(pady=5, padx=5)
+    
+    ctk.CTkLabel(frame_sheets, text="", height=5).pack()
+    
+    # Checkboxes para cada sheet
+    for sheet_name in SHEETS_FOCOS:
+        var = ctk.BooleanVar(value=False)
+        checkbox_vars[sheet_name] = var
+        
+        checkbox = ctk.CTkCheckBox(
+            frame_sheets,
+            text=sheet_name,
+            variable=var,
+            onvalue=True,
+            offvalue=False,
+            command=atualizar_selecoes,
+            font=("Arial", 11)
+        )
+        checkbox.pack(pady=3, padx=10, anchor="w")
+    
+    # Botão Executar
+    botao = ctk.CTkButton(
+        frame_inferior,
+        text="Executar Automação",
+        width=200,
+        height=45,
+        corner_radius=12,
+        font=("Arial", 15, "bold"),
+        command=iniciar
+    )
+    botao.pack(pady=10)
 
 class RedirectOutput:
     def write(self, text): 
@@ -56,6 +158,12 @@ def iniciar():
         messagebox.showwarning("Aviso", "Selecione uma opção")
         return
 
+    if modo_execucao == "Focos" and not sheets_selecionadas:
+        messagebox.showwarning("Aviso", "Selecione pelo menos uma sheet para o modo Focos")
+        spinner_running = False
+        progress.stop()
+        return
+
     status.configure(text="Processando...")
     botao.configure(state="disabled")
 
@@ -75,7 +183,7 @@ def iniciar():
         thread = threading.Thread(
             target=novos,
             daemon=True
-        )
+        )     
 
     thread.start()
 
@@ -111,7 +219,7 @@ def animar_spinner():
     loop()
 
 def focos():
-    main("Focos")
+    main("Focos", sheets_selecionadas)
     finalizar_execucao()
 
 def execute():
@@ -146,7 +254,7 @@ def alternar_tema():
 #janela
 root = ctk.CTk()
 root.title("Marcação de Ocorrências")
-root.geometry("520x360")
+root.geometry("520x420")
 
 #frame superior
 
