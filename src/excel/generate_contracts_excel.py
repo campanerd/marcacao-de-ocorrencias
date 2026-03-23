@@ -25,7 +25,7 @@ def generate_contracts_excel(modo: str):
     else:
         raise ValueError("Modo inválido")
 
-    pasta_destino = os.path.join("src", "downloads")
+    pasta_destino = os.getenv("CAMINHO_BASE")
     os.makedirs(pasta_destino, exist_ok=True)
 
     agora = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
