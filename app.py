@@ -34,26 +34,16 @@ def selecionar_opcao(modo):
     if modo == "Focos":
         sheets = obter_sheets_focos()
 
-        for sheet in sheets:
-            cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
-            cb.pack(anchor="w", padx=20)
-            checkboxes.append(cb)
-
     elif modo == "Dia":
         sheets = obter_sheets_dia()
-
-        for sheet in sheets:
-            cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
-            cb.pack(anchor="w", padx=20)
-            checkboxes.append(cb)
 
     elif modo == "Novos":
         sheets = obter_sheets_novos()
 
-        for sheet in sheets:
-            cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
-            cb.pack(anchor="w", padx=20)
-            checkboxes.append(cb)
+    for sheet in sheets:
+        cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
+        cb.pack(anchor="w", padx=20)
+        checkboxes.append(cb)
 
     botao = ctk.CTkButton(
         frame_inferior,
