@@ -1,7 +1,7 @@
 from src.excel.checkbox import listar_sheets, processar_sheets
 from datetime import datetime
 from dotenv import load_dotenv
-import pandas as pd
+
 import os
 
 # carregar variáveis de ambiente
