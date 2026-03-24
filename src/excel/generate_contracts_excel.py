@@ -6,21 +6,16 @@ from src.filtros.base_dia_focos import filtre_base_dia_focos
 from datetime import datetime
 
 
-def generate_contracts_excel(modo: str):
+def generate_contracts_excel(modo: str, sheets_selecionadas=None):
 
     if modo == "Focos":
-        df_focos, sheets_base_focos = filtre_base_dia_focos()
-        df_final = df_focos
-        print("Sheets processadas (Focos):", sheets_base_focos)
+        df_final = filtre_base_dia_focos(sheets_selecionadas)
 
     elif modo == "Dia":
-        df_base, sheets_base = filtre_base_dia()
-        df_final = df_base
-        print("Sheets processadas:", sheets_base)
+        df_final = filtre_base_dia(sheets_selecionadas)
 
     elif modo == "Novos":
-        df_novos = filtre_novos()
-        df_final = df_novos
+        df_final = filtre_novos(sheets_selecionadas)
 
     else:
         raise ValueError("Modo inválido")

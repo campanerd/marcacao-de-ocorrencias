@@ -6,7 +6,7 @@ import os
 
 # carregar variáveis de ambiente
 load_dotenv()
-def filtre_base_dia_focos(sheets_selecionadas: list):
+def filtre_novos(sheets_selecionadas: list):
     # caminho base vindo do .env
     pasta_base = os.getenv("CAMINHO_BASE")
 

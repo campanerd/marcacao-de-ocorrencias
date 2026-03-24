@@ -2,7 +2,7 @@ from src.pipelines.pontuais_pipeline import run_pipeline
 from src.web.ServiceRoutineClimbLowOccurence import ServiceRoutineClimbLowOccurence
 import os
 
-def main(modo: str):
+def main(modo: str, sheets_selecionadas=None):
 
     def limpar_downloads():
         pasta = os.path.join("src", "downloads")
@@ -19,7 +19,7 @@ def main(modo: str):
         print("Pasta downloads limpa.")
 
     print(f"Iniciando pipeline selecionada: {modo}")
-    generated_files = run_pipeline(modo)
+    generated_files = run_pipeline(modo, sheets_selecionadas=sheets_selecionadas)
 
     print("Arquivos gerados:")
     for item in generated_files:
