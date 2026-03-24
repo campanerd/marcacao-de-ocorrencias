@@ -7,7 +7,7 @@ import os
 
 
 def run_pipeline(modo: str, sheets_selecionadas=None):
-    excel_path = generate_contracts_excel(modo)
+    excel_path = generate_contracts_excel(modo, sheets_selecionadas)
 
     base_filename = os.path.splitext(
         os.path.basename(excel_path)
@@ -109,7 +109,3 @@ WHERE A.nome_cred = ?
     print("Pipeline finalizado com sucesso!")
 
     return arquivos_gerados
-
-
-if __name__ == "__main__":
-    run_pipeline()
