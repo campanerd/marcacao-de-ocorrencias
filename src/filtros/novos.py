@@ -28,7 +28,7 @@ def filtre_novos(sheets_selecionadas: list):
 
     return df_final
 
-def obter_sheets_focos():
+def obter_sheets_novos():
     pasta_base = os.getenv("CAMINHO_BASE")
 
     data_hoje = datetime.now().strftime("%d.%m")

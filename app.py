@@ -2,6 +2,9 @@ import customtkinter as ctk
 from tkinter import messagebox
 import threading
 from src.font.runner import main
+from src.filtros.base_dia_focos import obter_sheets_focos
+from src.filtros.base_dia import obter_sheets_dia
+from src.filtros.novos import obter_sheets_novos
 import sys
 
 ctk.set_appearance_mode("dark")
@@ -9,6 +12,8 @@ ctk.set_default_color_theme("blue")
 
 modo_tema = "dark"
 spinner_running = False
+
+checkboxes = []
 
 nomes_modo = {
     "Focos": "Base Focos",
@@ -20,15 +25,49 @@ modo_execucao = None
 botao = None
 
 def selecionar_opcao(modo):
-    global modo_execucao, botao
+    global modo_execucao, botao, checkboxes
     modo_execucao = modo
 
     limpar_frame_inferior()
+    checkboxes = []
 
-    botao = ctk.CTkButton(frame_inferior, text="Executar Automação", width=200, height=45, corner_radius=12, font=("Arial", 15, "bold"), command=iniciar)
+    if modo == "Focos":
+        sheets = obter_sheets_focos()
+
+        for sheet in sheets:
+            cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
+            cb.pack(anchor="w", padx=20)
+            checkboxes.append(cb)
+
+    elif modo == "Dia":
+        sheets = obter_sheets_dia()
+
+        for sheet in sheets:
+            cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
+            cb.pack(anchor="w", padx=20)
+            checkboxes.append(cb)
+
+    elif modo == "Novos":
+        sheets = obter_sheets_novos()
+
+        for sheet in sheets:
+            cb = ctk.CTkCheckBox(frame_inferior, text=sheet)
+            cb.pack(anchor="w", padx=20)
+            checkboxes.append(cb)
+
+    botao = ctk.CTkButton(
+        frame_inferior,
+        text="Executar Automação",
+        width=200,
+        height=45,
+        corner_radius=12,
+        font=("Arial", 15, "bold"),
+        command=iniciar
+    )
     botao.pack(pady=10)
 
     status.configure(text=f"Modo selecionado: {nomes_modo[modo]}")
+
 
 class RedirectOutput:
     def write(self, text): 
@@ -59,25 +98,10 @@ def iniciar():
     status.configure(text="Processando...")
     botao.configure(state="disabled")
 
-    if modo_execucao == "Focos":
-        thread = threading.Thread(
-            target=focos,
-            daemon=True
-        )
-    
-    elif modo_execucao == "Dia":
-        thread = threading.Thread(
-            target=base_dias,
-            daemon=True
-        )
-    
-    elif modo_execucao == "Novos":
-        thread = threading.Thread(
-            target=novos,
-            daemon=True
-        )
-
-    thread.start()
+    thread = threading.Thread(
+        target=executar_modo,
+        daemon=True
+    )
 
 def finalizar_execucao():
     def atualizar():
@@ -110,22 +134,21 @@ def animar_spinner():
 
     loop()
 
-def focos():
-    main("Focos")
-    finalizar_execucao()
+def executar_modo():
+    sheets_selecionadas = []
 
-def execute():
-    print("teste")
-    finalizar_execucao()
+    for cb in checkboxes:
+        if cb.get() == 1:
+            sheets_selecionadas.append(cb.cget("text"))
 
-def base_dias():
-    main("Dia")
-    finalizar_execucao()
+    if not sheets_selecionadas:
+        messagebox.showwarning("Aviso", "Selecione ao menos uma sheet")
+        finalizar_execucao()
+        return
 
-def novos():
-    main("Novos")
+    main(modo_execucao, sheets_selecionadas)
     finalizar_execucao()
-
+    
 def alternar_tema():
     global modo_tema
 
@@ -146,7 +169,7 @@ def alternar_tema():
 #janela
 root = ctk.CTk()
 root.title("Marcação de Ocorrências")
-root.geometry("520x360")
+root.geometry("520x560")
 
 #frame superior
 
