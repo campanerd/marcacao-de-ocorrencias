@@ -37,6 +37,5 @@ def obter_sheets_focos():
 
     return listar_sheets(
         caminho_origem,
-        prefixo="NU",
         coluna_obrigatoria="CONTRATO"
     )
