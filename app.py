@@ -91,7 +91,10 @@ def iniciar():
     thread = threading.Thread(
         target=executar_modo,
         daemon=True
+        
     )
+
+    thread.start()
 
 def finalizar_execucao():
     def atualizar():
