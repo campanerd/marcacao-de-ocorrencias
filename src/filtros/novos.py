@@ -35,4 +35,3 @@ def filtre_novos():
     df_final = df_final.dropna()
 
     return df_final
-

@@ -49,5 +49,3 @@ def filtre_base_dia():
     df_final = df_final.dropna()
 
     return df_final, sheets_lidas
-
-
