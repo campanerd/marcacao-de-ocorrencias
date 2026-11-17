@@ -1,4 +1,4 @@
-from src.excel.checkbox import listar_sheets, processar_sheets
+from src.backend.infrastructure.files.excel_sheets import listar_sheets, processar_sheets
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -6,7 +6,7 @@ import os
 
 # carregar variáveis de ambiente
 load_dotenv()
-def filtre_base_dia(sheets_selecionadas: list):
+def filtre_base_dia_focos(sheets_selecionadas: list):
     # caminho base vindo do .env
     pasta_base = os.getenv("CAMINHO_BASE")
 
@@ -28,15 +28,14 @@ def filtre_base_dia(sheets_selecionadas: list):
 
     return df_final
 
-def obter_sheets_dia():
+def obter_sheets_focos():
     pasta_base = os.getenv("CAMINHO_BASE")
 
     data_hoje = datetime.now().strftime("%d.%m")
-    arquivo_origem = f"BASE DIA {data_hoje}.xlsx"
+    arquivo_origem = f"BASE DIA FOCOS {data_hoje}.xlsx"
     caminho_origem = os.path.join(pasta_base, arquivo_origem)
 
     return listar_sheets(
         caminho_origem,
         coluna_obrigatoria="CONTRATO"
     )
-

@@ -1,8 +1,8 @@
 import pandas as pd
 import os
-from src.filtros.base_dia import filtre_base_dia
-from src.filtros.novos import filtre_novos
-from src.filtros.base_dia_focos import filtre_base_dia_focos
+from src.backend.application.whatsapp.filtros.base_dia import filtre_base_dia
+from src.backend.application.whatsapp.filtros.novos import filtre_novos
+from src.backend.application.whatsapp.filtros.base_dia_focos import filtre_base_dia_focos
 from datetime import datetime
 
 

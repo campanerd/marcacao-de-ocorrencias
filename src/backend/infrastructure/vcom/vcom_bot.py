@@ -1,6 +1,10 @@
 import os
 import sys 
 from dotenv import load_dotenv
+import certifi
+
+os.environ['REQUESTS_CA_BUNDLE'] = certifi.where()
+os.environ['WDM_SSL_VERIFY'] = '0'
 
 from fastapi import HTTPException
 

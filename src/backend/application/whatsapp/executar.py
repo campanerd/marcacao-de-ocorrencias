@@ -1,11 +1,12 @@
-from src.pipelines.pontuais_pipeline import run_pipeline
-from src.web.ServiceRoutineClimbLowOccurence import ServiceRoutineClimbLowOccurence
+from src.backend.application.whatsapp.pipeline import run_pipeline
+from src.backend.infrastructure.vcom.vcom_bot import ServiceRoutineClimbLowOccurence
+from src.backend.infrastructure.files.paths import DOWNLOADS_DIR
 import os
 
-def main(modo: str, sheets_selecionadas=None):
+def executar(modo: str, sheets_selecionadas=None):
 
     def limpar_downloads():
-        pasta = os.path.join("src", "downloads")
+        pasta = DOWNLOADS_DIR
 
         if not os.path.exists(pasta):
             return

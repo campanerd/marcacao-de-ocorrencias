@@ -1,4 +1,4 @@
-from src.excel.checkbox import listar_sheets, processar_sheets
+from src.backend.infrastructure.files.excel_sheets import listar_sheets, processar_sheets
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -17,7 +17,7 @@ def filtre_novos(sheets_selecionadas: list):
     data_hoje = datetime.now().strftime("%d.%m")
 
     # arquivo de origem
-    arquivo_origem = f"BASE DIA FOCOS {data_hoje}.xlsx"
+    arquivo_origem = f"NOVOS {data_hoje}.xlsx"
     caminho_origem = os.path.join(pasta_base, arquivo_origem)
 
     if not os.path.exists(caminho_origem):

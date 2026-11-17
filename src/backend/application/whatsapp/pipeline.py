@@ -1,8 +1,14 @@
-from src.excel.generate_contracts_excel import generate_contracts_excel
-from src.macro.excel_reader import read_contracts_from_excel
-from src.macro.db import get_sql_connection
-from src.macro.temp_tables import create_temp_contract_table
-from src.exporters.csv_exporter import export_csv_for_creditor
+from src.backend.application.whatsapp.generate_contracts_excel import generate_contracts_excel
+from src.backend.infrastructure.files.excel_reader import read_contracts_from_excel
+from src.backend.infrastructure.database.db import get_sql_connection
+from src.backend.infrastructure.database.temp_tables import create_temp_contract_table
+from src.backend.infrastructure.files.csv_exporter import export_csv_for_creditor
+from src.backend.infrastructure.files.paths import DOWNLOADS_DIR
+from src.backend.domain.whatsapp.regras import (
+    CREDORES,
+    TITULO_OCORRENCIA,
+    COMPLEMENTO_PADRAO,
+)
 import os
 
 
@@ -13,16 +19,12 @@ def run_pipeline(modo: str, sheets_selecionadas=None):
         os.path.basename(excel_path)
     )[0]
 
-    credores = [
-        "Daycoval Veiculos",
-        "Daycoval Juridico",
-        "Daycoval Focos",
-        "Daycoval Daycred"
-    ]
+    credores = CREDORES
 
-    titulo_ocor = "Whatsapp Enviado"
-    complemento = "Ação Massiva - via Whatsapp"
-
+    titulo_ocor = TITULO_OCORRENCIA
+    complemento = COMPLEMENTO_PADRAO
+    telefone_cliente
+    
     contracts = read_contracts_from_excel(excel_path)
 
     conn = get_sql_connection()
@@ -94,7 +96,7 @@ WHERE A.nome_cred = ?
     cursor.close()
     conn.close()
 
-    downloads = os.path.join("src", "downloads")
+    downloads = DOWNLOADS_DIR
 
     if os.path.exists(downloads):
         for arquivo in os.listdir(downloads):

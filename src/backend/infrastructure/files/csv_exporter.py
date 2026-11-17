@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from datetime import datetime
+from src.backend.infrastructure.files.paths import DOWNLOADS_DIR
 
 
 def export_csv_for_creditor(
@@ -11,7 +12,7 @@ def export_csv_for_creditor(
     titulo_ocor,
     complemento,
     base_filename,
-    output_dir="src/downloads"
+    output_dir=DOWNLOADS_DIR
 ):
     """
     Executa a query para um credor específico e exporta o resultado em CSV.
