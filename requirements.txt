@@ -1,0 +1,9 @@
+customtkinter
+pandas
+openpyxl
+pyodbc
+python-dotenv
+selenium
+webdriver-manager
+certifi
+fastapi
