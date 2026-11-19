@@ -1,3 +1,6 @@
+from tkinter import messagebox
+from src.backend.application.rcs.executar import executar
+
 from datetime import date
 
 import customtkinter as ctk
@@ -52,6 +55,17 @@ class TelaRCS(ctk.CTkFrame):
         )
         self.lista.pack(pady=5)
 
+        self.botao = ctk.CTkButton(
+            self,
+            text="Executar Automação",
+            width=200,
+            height=45,
+            corner_radius=12,
+            font=("Arial", 15, "bold"),
+            command=self.iniciar,
+        )
+        self.botao.pack(pady=10)
+
         self.carregar()
 
     def carregar(self):
@@ -103,3 +117,22 @@ class TelaRCS(ctk.CTkFrame):
         self.janela.status.configure(
             text=f"{len(arquivos_do_dia)} arquivo(s) em {self.menu_dia.get()}"
         )
+
+    def iniciar(self):
+        selecionados = [arquivo for cb, arquivo in self.itens if cb.get() == 1]
+
+        if not selecionados:
+            messagebox.showwarning("Aviso", "Selecione ao menos um arquivo")
+            return
+
+        self.janela.executar_em_thread(
+            lambda: self.executar_selecionados(selecionados), self.botao
+        )
+
+    def executar_selecionados(self, arquivos):
+        try:
+            executar(arquivos)
+        except Exception as erro:
+            print(f"Erro na execução do RCS: {erro}")
+        finally:
+            self.janela.finalizar_execucao()
