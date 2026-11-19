@@ -116,14 +116,7 @@ class ServiceRoutineClimbLowOccurence:
 
             input_file = self._wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="files"]')))
             input_file = self._driver.find_element(By.XPATH,'//*[@id="files"]')
-            
-            
-            incluir_arq = self._wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="btn-arquivo"]')))
-            incluir_arq = self._driver.find_element(By.XPATH,'//*[@id="btn-arquivo"]')
-            incluir_arq = incluir_arq.click()
 
-            
-                
             # Faz o upload do arquivo temporário
             input_file.send_keys(caminho_arquivo)#type:ignore
             
