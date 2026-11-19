@@ -23,8 +23,7 @@ def run_pipeline(modo: str, sheets_selecionadas=None):
 
     titulo_ocor = TITULO_OCORRENCIA
     complemento = COMPLEMENTO_PADRAO
-    telefone_cliente
-    
+
     contracts = read_contracts_from_excel(excel_path)
 
     conn = get_sql_connection()
@@ -42,7 +41,7 @@ SELECT DISTINCT
     RTRIM(A.cpfcgc_pes)                          AS [CPF/CNPJ],
     RTRIM(A.CONTRATO_TIT)                        AS Contrato,
     ?                                            AS [Título da Ocorrência],
-    ?                                            AS Complemento,
+    LTRIM(CONCAT(?, ' ', RTRIM(C.ddd_tel), RTRIM(C.Nr_tel)))  AS Complemento,
     ' '                                           AS [Data de Promessa],
     FORMAT(GETDATE(),'dd/MM/yyyy HH:mm')         AS [Data/Hora da Ocorrência],
     ' '                                           AS [Código do Usuário],

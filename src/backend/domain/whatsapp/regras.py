@@ -8,4 +8,4 @@ CREDORES = [
 ]
 
 TITULO_OCORRENCIA = "Whatsapp Enviado"
-COMPLEMENTO_PADRAO = "Ação Massiva - via Whatsapp"
+COMPLEMENTO_PADRAO = ""
