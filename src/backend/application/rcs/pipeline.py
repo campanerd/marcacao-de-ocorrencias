@@ -67,7 +67,11 @@ def run_pipeline(arquivos):
                 base_filename,
             )
             if caminho_csv:
-                arquivos_gerados.append({"credor": creditor, "path": caminho_csv})
+                arquivos_gerados.append({
+                    "credor": creditor,
+                    "path": caminho_csv,
+                    "arquivo": arquivo.nome,
+                })
 
     cursor.close()
     conn.close()

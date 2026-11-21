@@ -1,5 +1,5 @@
 import os
-
+from src.backend.infrastructure.files.historico_rcs import registrar_envio
 from src.backend.application.rcs.pipeline import run_pipeline
 from src.backend.infrastructure.files.paths import DOWNLOADS_DIR
 from src.backend.infrastructure.vcom.vcom_bot import ServiceRoutineClimbLowOccurence
@@ -32,6 +32,9 @@ def executar(arquivos):
     for item in arquivos_gerados:
         print(f"Importando {item['credor']} -> {item['path']}")
         bot.import_carga_vcom(item["credor"], item["path"])
+
+    registrar_envio({item["arquivo"] for item in arquivos_gerados})
+    print("Histórico de envios atualizado.")
 
     print("Processo finalizado com sucesso!")
     _limpar_downloads()
