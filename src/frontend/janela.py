@@ -171,7 +171,7 @@ class JanelaPrincipal(ctk.CTk):
 
         ctk.CTkLabel(
             rodape,
-            text="Desenvolvido por Davi Campaner · 2026",
+            text="Desenvolvido por Davi Campaner\ne Vinícius Regazio · 2026",
             font=tema.fonte(11),
             text_color=tema.TEXTO_SUAVE,
             wraplength=190,
